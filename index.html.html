@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="es" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARQ Jorge Siagala | Arquitectura & Diseño</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Inter & Playfair Display / Cinzel for Architectural Elegance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- QR Code Generator Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  
+  <!-- Tailwind Configuration -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              gold: '#D4AF37',
+              goldLight: '#F3E5AB',
+              goldDark: '#AA820A',
+              darkBg: '#0b0f17',
+              darkCard: '#131924',
+              darkBorder: '#232d3f',
+              accent: '#38bdf8'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Cinzel', 'serif'],
+            mono: ['Space Grotesk', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Architectural Blueprint Background Pattern */
+    .bg-blueprint {
+      background-color: #0b0f17;
+      background-image: 
+        linear-gradient(rgba(212, 175, 55, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 175, 55, 0.04) 1px, transparent 1px),
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+      background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
+    }
+
+    /* Glow Effects */
+    .gold-glow {
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.15);
+    }
+    .gold-glow-lg {
+      box-shadow: 0 0 50px rgba(212, 175, 55, 0.25);
+    }
+
+    /* Text Gradient */
+    .gold-text-gradient {
+      background: linear-gradient(135deg, #FFF 0%, #F3E5AB 50%, #D4AF37 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0b0f17;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #232d3f;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #D4AF37;
+    }
+  </style>
+</head>
+
+<body class="bg-brand-darkBg text-slate-200 font-sans bg-blueprint antialiased selection:bg-brand-gold selection:text-black min-h-screen flex flex-col">
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="fixed top-0 left-0 w-full z-50 bg-brand-darkBg/90 backdrop-blur-md border-b border-brand-darkBorder transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#hero" class="flex items-center gap-3 group">
+        <!-- SVG Architectural Logo Icon -->
+        <div class="w-10 h-10 border border-brand-gold/60 flex items-center justify-center p-1.5 group-hover:border-brand-gold transition-colors duration-300 relative overflow-hidden">
+          <div class="absolute inset-0 bg-brand-gold/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+          <svg viewBox="0 0 100 100" class="w-full h-full stroke-brand-gold fill-none stroke-[3]">
+            <polygon points="10,90 50,10 90,90" />
+            <line x1="30" y1="50" x2="70" y2="50" />
+            <line x1="50" y1="10" x2="50" y2="90" />
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-serif text-lg tracking-widest text-white font-bold leading-none">ARQ JORGE SIAGALA</span>
+          <span class="text-[10px] tracking-[0.25em] text-brand-gold font-mono uppercase mt-1">Arquitectura & Diseño</span>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+        <a href="#filosofia" class="hover:text-brand-gold transition-colors duration-200">Sobre Mí</a>
+        <a href="#portafolio" class="hover:text-brand-gold transition-colors duration-200">Portafolio</a>
+        <a href="#servicios" class="hover:text-brand-gold transition-colors duration-200">Servicios</a>
+        <a href="#tarjeta-digital" class="hover:text-brand-gold transition-colors duration-200">Tarjeta QR</a>
+        <a href="#contacto" class="hover:text-brand-gold transition-colors duration-200">Contacto</a>
+      </div>
+
+      <!-- Action Button -->
+      <div class="hidden md:block">
+        <a href="https://wa.me/523316104576" target="_blank" rel="noopener noreferrer" class="relative inline-flex items-center justify-center px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-black bg-brand-gold hover:bg-brand-goldLight transition-all duration-300 rounded-sm shadow-md font-mono">
+          <i class="fa-brands fa-whatsapp text-sm mr-2"></i> WhatsApp
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="menu-btn" class="md:hidden text-slate-300 hover:text-brand-gold p-2 focus:outline-none" aria-label="Abrir Menú">
+        <i class="fa-solid fa-bars text-xl"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Nav Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-brand-darkCard border-b border-brand-darkBorder px-6 py-6 space-y-4 font-mono text-sm uppercase tracking-wider">
+      <a href="#filosofia" class="block hover:text-brand-gold py-1">Sobre Mí</a>
+      <a href="#portafolio" class="block hover:text-brand-gold py-1">Portafolio</a>
+      <a href="#servicios" class="block hover:text-brand-gold py-1">Servicios</a>
+      <a href="#tarjeta-digital" class="block hover:text-brand-gold py-1">Tarjeta Digital</a>
+      <a href="#contacto" class="block hover:text-brand-gold py-1">Contacto</a>
+      <a href="https://wa.me/523316104576" target="_blank" class="block w-full text-center bg-brand-gold text-black py-3 rounded-sm font-semibold mt-4">
+        <i class="fa-brands fa-whatsapp mr-2"></i> Contactar por WhatsApp
+      </a>
+    </div>
+  </nav>
+
+  <!-- ================= HERO SECTION ================= -->
+  <section id="hero" class="relative min-h-screen flex items-center justify-center pt-24 pb-12 overflow-hidden">
+    <!-- Grid Overlay lines -->
+    <div class="absolute inset-0 pointer-events-none opacity-20">
+      <div class="h-full w-full max-w-7xl mx-auto border-x border-slate-700 flex justify-between">
+        <div class="w-px bg-slate-800 h-full hidden sm:block"></div>
+        <div class="w-px bg-slate-800 h-full"></div>
+        <div class="w-px bg-slate-800 h-full hidden sm:block"></div>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center my-auto">
+      <!-- Tag / Badge -->
+      <div class="inline-flex items-center gap-2 px-3 py-1 border border-brand-gold/30 bg-brand-gold/5 text-brand-gold text-xs font-mono tracking-widest uppercase mb-8 rounded-full">
+        <span class="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span>
+        Estudio de Arquitectura Contemporánea
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white mb-6 leading-tight">
+        ARQ JORGE SIAGALA
+      </h1>
+
+      <p class="font-sans text-xl sm:text-2xl text-slate-300 max-w-3xl mx-auto font-light mb-4 tracking-wide">
+        <span class="gold-text-gradient font-serif font-semibold">Arquitectura & Diseño</span>
+      </p>
+
+      <p class="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto font-light mb-10 leading-relaxed">
+        Transformando visiones en estructuras atemporales. Innovación estética, funcionalidad geométrica y precisión técnica aplicadas a cada espacio.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 font-mono text-xs uppercase tracking-wider">
+        <a href="https://wa.me/523316104576" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 bg-brand-gold hover:bg-brand-goldLight text-black font-semibold rounded-sm transition-all duration-300 transform hover:-translate-y-1 shadow-lg gold-glow flex items-center justify-center gap-3">
+          <i class="fa-brands fa-whatsapp text-base"></i> Contactar por WhatsApp
+        </a>
+        <a href="#portafolio" class="w-full sm:w-auto px-8 py-4 border border-slate-600 hover:border-brand-gold text-white hover:text-brand-gold bg-brand-darkCard/50 backdrop-blur-sm rounded-sm transition-all duration-300 flex items-center justify-center gap-3">
+          <i class="fa-solid fa-compass text-base"></i> Ver Portafolio
+        </a>
+      </div>
+
+      <!-- Technical Drawing Specs Decorative -->
+      <div class="mt-16 pt-8 border-t border-brand-darkBorder/60 max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-left font-mono text-xs text-slate-500">
+        <div>
+          <span class="block text-brand-gold text-lg font-bold">33 1610 4576</span>
+          <span class="uppercase tracking-widest text-[10px]">Línea Directa</span>
+        </div>
+        <div>
+          <span class="block text-white text-lg font-bold">Jalisco, MX</span>
+          <span class="uppercase tracking-widest text-[10px]">Ubicación Principal</span>
+        </div>
+        <div>
+          <span class="block text-white text-lg font-bold">100%</span>
+          <span class="uppercase tracking-widest text-[10px]">Diseño Personalizado</span>
+        </div>
+        <div>
+          <span class="block text-white text-lg font-bold">BIM & 3D</span>
+          <span class="uppercase tracking-widest text-[10px]">Tecnología Visual</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SOBRE MÍ / FILOSOFÍA ================= -->
+  <section id="filosofia" class="py-24 bg-brand-darkCard/40 border-y border-brand-darkBorder relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Text Content -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-block text-brand-gold font-mono text-xs uppercase tracking-widest border-b border-brand-gold/40 pb-1">
+            Filosofía & Enfoque
+          </div>
+          <h2 class="font-serif text-3xl sm:text-4xl text-white font-bold tracking-tight">
+            Diseñando espacios que inspiran y perduran en el tiempo
+          </h2>
+          <p class="text-slate-300 leading-relaxed font-light">
+            Como arquitecto, entiendo cada proyecto como una síntesis entre el entorno, la luz natural y la identidad de quienes lo habitan. Mi labor en <strong class="text-brand-gold">ARQ Jorge Siagala</strong> abarca desde el primer trazo conceptual hasta la supervisión minuciosa de cada detalle en obra.
+          </p>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Especializado en arquitectura contemporánea, optimización espacial y modelado 3D fotorrealista, combino la sobriedad estética con materiales de alta calidad para materializar obras funcionales, sostenibles y con carácter único.
+          </p>
+
+          <!-- Pillars -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 font-mono text-xs">
+            <div class="p-4 border border-brand-darkBorder bg-brand-darkBg/60">
+              <i class="fa-solid fa-cube text-brand-gold text-xl mb-2"></i>
+              <h3 class="text-white font-bold uppercase mb-1">Geometría Limpia</h3>
+              <p class="text-slate-400 text-[11px]">Líneas puras y balance en volúmenes.</p>
+            </div>
+            <div class="p-4 border border-brand-darkBorder bg-brand-darkBg/60">
+              <i class="fa-solid fa-sun text-brand-gold text-xl mb-2"></i>
+              <h3 class="text-white font-bold uppercase mb-1">Iluminación Natural</h3>
+              <p class="text-slate-400 text-[11px]">Aprovechamiento bioclimático.</p>
+            </div>
+            <div class="p-4 border border-brand-darkBorder bg-brand-darkBg/60">
+              <i class="fa-solid fa-drafting-compass text-brand-gold text-xl mb-2"></i>
+              <h3 class="text-white font-bold uppercase mb-1">Precisión Técnica</h3>
+              <p class="text-slate-400 text-[11px]">Ejecución fiel al plano original.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual Architect Sketch Card -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative bg-brand-darkBg border border-brand-gold/30 p-6 rounded-sm shadow-2xl overflow-hidden group">
+            <div class="absolute top-0 right-0 p-4 font-mono text-[10px] text-brand-gold/50">
+              SPEC-2026 // A-01
+            </div>
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80" alt="Arquitectura Moderna" class="w-full h-80 object-cover grayscale contrast-125 opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 rounded-sm">
+            <div class="mt-4 border-t border-brand-darkBorder pt-4 flex justify-between items-center font-mono text-xs">
+              <span class="text-slate-300">Residencia Contemporánea</span>
+              <span class="text-brand-gold">Ver render -></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= PORTAFOLIO / PROYECTOS ================= -->
+  <section id="portafolio" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div>
+          <span class="text-brand-gold font-mono text-xs uppercase tracking-widest">Catálogo Seleccionado</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-white font-bold tracking-tight mt-1">Portafolio de Proyectos</h2>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="flex flex-wrap gap-2 mt-6 md:mt-0 font-mono text-xs">
+          <button onclick="filterProjects('all')" class="filter-btn active px-4 py-2 border border-brand-gold bg-brand-gold text-black uppercase font-medium transition-all" data-filter="all">Todos</button>
+          <button onclick="filterProjects('residencial')" class="filter-btn px-4 py-2 border border-brand-darkBorder bg-brand-darkCard text-slate-300 hover:border-brand-gold hover:text-white uppercase transition-all" data-filter="residencial">Residencial</button>
+          <button onclick="filterProjects('comercial')" class="filter-btn px-4 py-2 border border-brand-darkBorder bg-brand-darkCard text-slate-300 hover:border-brand-gold hover:text-white uppercase transition-all" data-filter="comercial">Comercial</button>
+          <button onclick="filterProjects('interiores')" class="filter-btn px-4 py-2 border border-brand-darkBorder bg-brand-darkCard text-slate-300 hover:border-brand-gold hover:text-white uppercase transition-all" data-filter="interiores">Interiores</button>
+          <button onclick="filterProjects('render')" class="filter-btn px-4 py-2 border border-brand-darkBorder bg-brand-darkCard text-slate-300 hover:border-brand-gold hover:text-white uppercase transition-all" data-filter="render">Renders 3D</button>
+        </div>
+      </div>
+
+      <!-- Projects Grid -->
+      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Project Card 1 -->
+        <div class="project-card project-item residencial render bg-brand-darkCard border border-brand-darkBorder overflow-hidden group hover:border-brand-gold/60 transition-all duration-300">
+          <div class="relative overflow-hidden h-64">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" alt="Casa Valle Volcanes" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-darkBg via-transparent to-transparent opacity-80"></div>
+            <span class="absolute top-4 right-4 bg-black/70 backdrop-blur-md text-brand-gold text-[10px] font-mono px-3 py-1 uppercase tracking-wider border border-brand-gold/30">Residencial</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-serif text-xl text-white font-bold group-hover:text-brand-gold transition-colors">Residencia Natura</h3>
+            <p class="text-slate-400 text-xs mt-2 line-clamp-2">Casa habitación minimalista con integración de jardines interiores y ventanales de doble altura.</p>
+            <div class="mt-4 pt-4 border-t border-brand-darkBorder flex justify-between items-center text-xs font-mono text-slate-400">
+              <span><i class="fa-solid fa-ruler-combined text-brand-gold mr-1"></i> 380 m²</span>
+              <button onclick="openModal('Residencia Natura', 'Casa habitación minimalista enfocada en la integración de espacios abiertos y luz natural. Cuenta con concreto aparente, acentos en madera de parota y sistema pasivo de ventilación.', 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80', 'Residencial', '380 m²')" class="text-brand-gold hover:underline">Detalles <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 2 -->
+        <div class="project-card project-item comercial bg-brand-darkCard border border-brand-darkBorder overflow-hidden group hover:border-brand-gold/60 transition-all duration-300">
+          <div class="relative overflow-hidden h-64">
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Plaza Comercial Reforma" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-darkBg via-transparent to-transparent opacity-80"></div>
+            <span class="absolute top-4 right-4 bg-black/70 backdrop-blur-md text-brand-gold text-[10px] font-mono px-3 py-1 uppercase tracking-wider border border-brand-gold/30">Comercial</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-serif text-xl text-white font-bold group-hover:text-brand-gold transition-colors">Corporativo K-Tower</h3>
+            <p class="text-slate-400 text-xs mt-2 line-clamp-2">Edificio de oficinas de uso mixto con fachada flotante y certificación energética.</p>
+            <div class="mt-4 pt-4 border-t border-brand-darkBorder flex justify-between items-center text-xs font-mono text-slate-400">
+              <span><i class="fa-solid fa-ruler-combined text-brand-gold mr-1"></i> 1,200 m²</span>
+              <button onclick="openModal('Corporativo K-Tower', 'Complejo empresarial diseñado para maximizar la eficiencia lumínica y acústica. Incluye terrazas ejecutivas, áreas de cowork y acabados prémium en piedra volcánica y cristal de baja emisividad.', 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80', 'Comercial', '1,200 m²')" class="text-brand-gold hover:underline">Detalles <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 3 -->
+        <div class="project-card project-item interiores render bg-brand-darkCard border border-brand-darkBorder overflow-hidden group hover:border-brand-gold/60 transition-all duration-300">
+          <div class="relative overflow-hidden h-64">
+            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80" alt="Interiorismo Penthouse" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-darkBg via-transparent to-transparent opacity-80"></div>
+            <span class="absolute top-4 right-4 bg-black/70 backdrop-blur-md text-brand-gold text-[10px] font-mono px-3 py-1 uppercase tracking-wider border border-brand-gold/30">Interiores</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-serif text-xl text-white font-bold group-hover:text-brand-gold transition-colors">Penthouse Lumina</h3>
+            <p class="text-slate-400 text-xs mt-2 line-clamp-2">Rediseño integral de interiores con mobiliario a medida, domótica e iluminación escénica.</p>
+            <div class="mt-4 pt-4 border-t border-brand-darkBorder flex justify-between items-center text-xs font-mono text-slate-400">
+              <span><i class="fa-solid fa-ruler-combined text-brand-gold mr-1"></i> 220 m²</span>
+              <button onclick="openModal('Penthouse Lumina', 'Proyecto de interiorismo de lujo con paleta neutra y tonos cálidos. Destacan sus páneles de nogal, pisos de mármol pulido y diseño de iluminación personalizado.', 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80', 'Interiores', '220 m²')" class="text-brand-gold hover:underline">Detalles <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 4 -->
+        <div class="project-card project-item residencial bg-brand-darkCard border border-brand-darkBorder overflow-hidden group hover:border-brand-gold/60 transition-all duration-300">
+          <div class="relative overflow-hidden h-64">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="Villa Jacarandá" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-darkBg via-transparent to-transparent opacity-80"></div>
+            <span class="absolute top-4 right-4 bg-black/70 backdrop-blur-md text-brand-gold text-[10px] font-mono px-3 py-1 uppercase tracking-wider border border-brand-gold/30">Residencial</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-serif text-xl text-white font-bold group-hover:text-brand-gold transition-colors">Villa Jacarandá</h3>
+            <p class="text-slate-400 text-xs mt-2 line-clamp-2">Residencia unifamiliar con alberca volada y distribución fluida entre áreas sociales y privadas.</p>
+            <div class="mt-4 pt-4 border-t border-brand-darkBorder flex justify-between items-center text-xs font-mono text-slate-400">
+              <span><i class="fa-solid fa-ruler-combined text-brand-gold mr-1"></i> 510 m²</span>
+              <button onclick="openModal('Villa Jacarandá', 'Casa de campo de diseño arquitectónico audaz que interactúa armónicamente con la vegetación existente. Volúmenes volados y terrazas integradas.', 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80', 'Residencial', '510 m²')" class="text-brand-gold hover:underline">Detalles <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 5 -->
+        <div class="project-card project-item render bg-brand-darkCard border border-brand-darkBorder overflow-hidden group hover:border-brand-gold/60 transition-all duration-300">
+          <div class="relative overflow-hidden h-64">
+            <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=800&q=80" alt="Visualización 3D Complejo" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-darkBg via-transparent to-transparent opacity-80"></div>
+            <span class="absolute top-4 right-4 bg-black/70 backdrop-blur-md text-brand-gold text-[10px] font-mono px-3 py-1 uppercase tracking-wider border border-brand-gold/30">Render 3D</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-serif text-xl text-white font-bold group-hover:text-brand-gold transition-colors">Visualización 3D Horizon</h3>
+            <p class="text-slate-400 text-xs mt-2 line-clamp-2">Simulación fotorrealista hiperdetallada para presentación e inversión inmobiliaria.</p>
+            <div class="mt-4 pt-4 border-t border-brand-darkBorder flex justify-between items-center text-xs font-mono text-slate-400">
+              <span><i class="fa-solid fa-ruler-combined text-brand-gold mr-1"></i> Modelado 3D</span>
+              <button onclick="openModal('Visualización 3D Horizon', 'Renders de alta fidelidad con iluminación diurna y nocturna, texturizado fotorrealista y ambientación técnica para preventas inmobiliarias.', 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1200&q=80', 'Render 3D', 'Renderizado')" class="text-brand-gold hover:underline">Detalles <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 6 -->
+        <div class="project-card project-item comercial interiores bg-brand-darkCard border border-brand-darkBorder overflow-hidden group hover:border-brand-gold/60 transition-all duration-300">
+          <div class="relative overflow-hidden h-64">
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" alt="Restaurante Bistro A" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-darkBg via-transparent to-transparent opacity-80"></div>
+            <span class="absolute top-4 right-4 bg-black/70 backdrop-blur-md text-brand-gold text-[10px] font-mono px-3 py-1 uppercase tracking-wider border border-brand-gold/30">Comercial</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-serif text-xl text-white font-bold group-hover:text-brand-gold transition-colors">Bistro & Cava Atelier</h3>
+            <p class="text-slate-400 text-xs mt-2 line-clamp-2">Diseño gastronómico con atmósfera cálida, cava subterránea e iluminación ambiental.</p>
+            <div class="mt-4 pt-4 border-t border-brand-darkBorder flex justify-between items-center text-xs font-mono text-slate-400">
+              <span><i class="fa-solid fa-ruler-combined text-brand-gold mr-1"></i> 290 m²</span>
+              <button onclick="openModal('Bistro & Cava Atelier', 'Espacio gastronómico con carácter industrial y toques de elegancia clásica. Distribución acústica optimizada y mobiliario en acero y madera quemada.', 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80', 'Comercial', '290 m²')" class="text-brand-gold hover:underline">Detalles <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= SERVICIOS ================= -->
+  <section id="servicios" class="py-24 bg-brand-darkCard/40 border-t border-brand-darkBorder relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-brand-gold font-mono text-xs uppercase tracking-widest">Soluciones Integrales</span>
+        <h2 class="font-serif text-3xl sm:text-4xl text-white font-bold tracking-tight mt-1">Servicios Profesionales</h2>
+        <p class="text-slate-400 text-sm mt-3 font-light">
+          Acompañamiento integral desde la concepción del plano hasta la entrega definitiva de la obra.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        
+        <!-- Service Card 1 -->
+        <div class="p-8 bg-brand-darkBg border border-brand-darkBorder hover:border-brand-gold transition-all duration-300 rounded-sm relative group">
+          <div class="w-12 h-12 bg-brand-gold/10 border border-brand-gold/30 text-brand-gold flex items-center justify-center text-xl mb-6 group-hover:bg-brand-gold group-hover:text-black transition-all">
+            <i class="fa-solid fa-pen-ruler"></i>
+          </div>
+          <h3 class="font-serif text-lg text-white font-bold mb-3">Diseño Arquitectónico</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Planos ejecutivos, diseño conceptual y distribución espacial optimizada para proyectos residenciales y comerciales.
+          </p>
+          <div class="mt-6 pt-4 border-t border-brand-darkBorder text-[11px] font-mono text-brand-gold">
+            Plano Ejecutivo / Anteproyecto
+          </div>
+        </div>
+
+        <!-- Service Card 2 -->
+        <div class="p-8 bg-brand-darkBg border border-brand-darkBorder hover:border-brand-gold transition-all duration-300 rounded-sm relative group">
+          <div class="w-12 h-12 bg-brand-gold/10 border border-brand-gold/30 text-brand-gold flex items-center justify-center text-xl mb-6 group-hover:bg-brand-gold group-hover:text-black transition-all">
+            <i class="fa-solid fa-paint-roller"></i>
+          </div>
+          <h3 class="font-serif text-lg text-white font-bold mb-3">Remodelaciones</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Transformación de espacios existentes para actualizar su estética, funcionalidad e iluminación integral.
+          </p>
+          <div class="mt-6 pt-4 border-t border-brand-darkBorder text-[11px] font-mono text-brand-gold">
+            Modernización / Intervención
+          </div>
+        </div>
+
+        <!-- Service Card 3 -->
+        <div class="p-8 bg-brand-darkBg border border-brand-darkBorder hover:border-brand-gold transition-all duration-300 rounded-sm relative group">
+          <div class="w-12 h-12 bg-brand-gold/10 border border-brand-gold/30 text-brand-gold flex items-center justify-center text-xl mb-6 group-hover:bg-brand-gold group-hover:text-black transition-all">
+            <i class="fa-solid fa-building-user"></i>
+          </div>
+          <h3 class="font-serif text-lg text-white font-bold mb-3">Supervisión de Obra</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Control técnico, gestión de presupuestos, cronogramas de entrega y supervisión de acabados en sitio.
+          </p>
+          <div class="mt-6 pt-4 border-t border-brand-darkBorder text-[11px] font-mono text-brand-gold">
+            Gestión & Control de Calidad
+          </div>
+        </div>
+
+        <!-- Service Card 4 -->
+        <div class="p-8 bg-brand-darkBg border border-brand-darkBorder hover:border-brand-gold transition-all duration-300 rounded-sm relative group">
+          <div class="w-12 h-12 bg-brand-gold/10 border border-brand-gold/30 text-brand-gold flex items-center justify-center text-xl mb-6 group-hover:bg-brand-gold group-hover:text-black transition-all">
+            <i class="fa-solid fa-vr-cardboard"></i>
+          </div>
+          <h3 class="font-serif text-lg text-white font-bold mb-3">Modelado 3D & Renders</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Visualización fotorrealista hiperdetallada yrecorridos virtuales antes de iniciar el proceso constructivo.
+          </p>
+          <div class="mt-6 pt-4 border-t border-brand-darkBorder text-[11px] font-mono text-brand-gold">
+            BIM / High-End Rendering
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= TARJETA DIGITAL & QR SECTION ================= -->
+  <section id="tarjeta-digital" class="py-24 border-t border-brand-darkBorder bg-brand-darkBg relative overflow-hidden">
+    <!-- Blueprint Lines Overlay -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-brand-gold font-mono text-xs uppercase tracking-widest">Conexión Digital</span>
+        <h2 class="font-serif text-3xl sm:text-4xl text-white font-bold tracking-tight mt-1">Tarjeta de Presentación Virtual</h2>
+        <p class="text-slate-400 text-sm mt-3 font-light">
+          Escanea el código QR directamente desde tu dispositivo móvil para guardar mi contacto o comunicarte vía WhatsApp de inmediato.
+        </p>
+      </div>
+
+      <div class="flex justify-center">
+        <!-- Interactive Architectural Business Card Container -->
+        <div class="w-full max-w-md bg-gradient-to-b from-[#111827] to-[#0b0f17] border-2 border-brand-gold/40 p-8 rounded-lg shadow-2xl relative gold-glow group">
+          
+          <!-- Decorative Technical Corner Marks -->
+          <div class="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-brand-gold"></div>
+          <div class="absolute top-2 right-2 w-3 h-3 border-t-2 border-r-2 border-brand-gold"></div>
+          <div class="absolute bottom-2 left-2 w-3 h-3 border-b-2 border-l-2 border-brand-gold"></div>
+          <div class="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-brand-gold"></div>
+
+          <!-- Card Header Logo -->
+          <div class="text-center border-b border-brand-darkBorder pb-6 mb-6">
+            <div class="w-16 h-16 mx-auto mb-3 border border-brand-gold p-2 flex items-center justify-center">
+              <svg viewBox="0 0 100 100" class="w-full h-full stroke-brand-gold fill-none stroke-[3]">
+                <polygon points="10,90 50,10 90,90" />
+                <line x1="30" y1="50" x2="70" y2="50" />
+                <line x1="50" y1="10" x2="50" y2="90" />
+              </svg>
+            </div>
+            <h3 class="font-serif text-2xl font-bold tracking-wider text-white">ARQ Jorge Siagala</h3>
+            <p class="text-xs font-mono tracking-widest text-brand-gold uppercase mt-1">Arquitectura & Diseño</p>
+          </div>
+
+          <!-- Contact Specs -->
+          <div class="space-y-3 font-mono text-xs text-slate-300 mb-8 bg-brand-darkBg/80 p-4 border border-brand-darkBorder rounded-sm">
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-phone text-brand-gold text-sm w-4 text-center"></i>
+              <span>+52 33 1610 4576</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fa-brands fa-whatsapp text-brand-gold text-sm w-4 text-center"></i>
+              <span>Atención Directa por WhatsApp</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-location-dot text-brand-gold text-sm w-4 text-center"></i>
+              <span>Jalisco, México</span>
+            </div>
+          </div>
+
+          <!-- Dynamic QR Container -->
+          <div class="flex flex-col items-center justify-center bg-white p-4 rounded-sm shadow-inner max-w-[220px] mx-auto border border-brand-gold">
+            <div id="qrcode" class="p-1"></div>
+            <span class="text-[10px] font-mono text-slate-700 font-bold uppercase mt-2 tracking-tighter">Escanea para WhatsApp</span>
+          </div>
+
+          <!-- Card Actions -->
+          <div class="mt-8 grid grid-cols-2 gap-3 font-mono text-xs">
+            <a href="https://wa.me/523316104576" target="_blank" class="py-3 bg-brand-gold hover:bg-brand-goldLight text-black font-bold text-center uppercase transition-all rounded-sm flex items-center justify-center gap-2">
+              <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
+            </a>
+            <button onclick="copyToClipboard('https://wa.me/523316104576')" class="py-3 border border-slate-600 hover:border-brand-gold text-white hover:text-brand-gold text-center uppercase transition-all rounded-sm flex items-center justify-center gap-2">
+              <i class="fa-solid fa-share-nodes text-sm"></i> Copiar Link
+            </button>
+          </div>
+
+          <!-- Toast Message for Clipboard -->
+          <div id="toast" class="hidden absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-brand-gold text-black px-4 py-2 rounded text-xs font-mono font-bold shadow-lg">
+            ¡Enlace copiado al portapapeles!
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= CONTACTO & MAPA SIMULADO ================= -->
+  <section id="contacto" class="py-24 bg-brand-darkCard/30 border-t border-brand-darkBorder relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <!-- Form Section -->
+        <div class="lg:col-span-7 space-y-6">
+          <span class="text-brand-gold font-mono text-xs uppercase tracking-widest">Consulta de Proyectos</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-white font-bold tracking-tight">Iniciemos tu proyecto</h2>
+          <p class="text-slate-400 text-sm font-light">
+            Escríbeme para agendar una sesión de consulta, revisar requerimientos de tu terreno o solicitar la cotización de un anteproyecto.
+          </p>
+
+          <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4 pt-4 font-mono text-xs">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-slate-300 mb-1 uppercase">Nombre Completo *</label>
+                <input type="text" required placeholder="Tu nombre" class="w-full bg-brand-darkBg border border-brand-darkBorder focus:border-brand-gold px-4 py-3 text-white outline-none rounded-sm transition-colors">
+              </div>
+              <div>
+                <label class="block text-slate-300 mb-1 uppercase">Teléfono / WhatsApp *</label>
+                <input type="tel" required placeholder="33 0000 0000" class="w-full bg-brand-darkBg border border-brand-darkBorder focus:border-brand-gold px-4 py-3 text-white outline-none rounded-sm transition-colors">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-slate-300 mb-1 uppercase">Tipo de Proyecto</label>
+              <select class="w-full bg-brand-darkBg border border-brand-darkBorder focus:border-brand-gold px-4 py-3 text-white outline-none rounded-sm transition-colors">
+                <option value="Residencial">Diseño Residencial</option>
+                <option value="Comercial">Proyecto Comercial</option>
+                <option value="Remodelacion">Remodelación / Interiores</option>
+                <option value="Render3D">Renders 3D & Animación</option>
+                <option value="Otro">Supervisión / Otro</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-slate-300 mb-1 uppercase">Mensaje / Detalles del Terreno</label>
+              <textarea rows="4" required placeholder="Cuéntame sobre la ubicación, metros cuadrados estimados o tus necesidades principales..." class="w-full bg-brand-darkBg border border-brand-darkBorder focus:border-brand-gold px-4 py-3 text-white outline-none rounded-sm transition-colors"></textarea>
+            </div>
+
+            <button type="submit" class="w-full py-4 bg-brand-gold hover:bg-brand-goldLight text-black font-bold uppercase transition-all duration-300 rounded-sm shadow-md">
+              <i class="fa-paper-plane mr-2"></i> Enviar Mensaje a WhatsApp
+            </button>
+          </form>
+        </div>
+
+        <!-- Simulated Architectural Map & Info -->
+        <div class="lg:col-span-5 flex flex-col justify-between space-y-6">
+          
+          <div class="bg-brand-darkBg border border-brand-darkBorder p-6 rounded-sm space-y-4 font-mono text-xs">
+            <h3 class="font-serif text-lg text-white font-bold tracking-wider uppercase border-b border-brand-darkBorder pb-3">Información Directa</h3>
+            
+            <div class="flex items-start gap-4">
+              <div class="p-2 border border-brand-gold/40 text-brand-gold"><i class="fa-solid fa-phone text-base"></i></div>
+              <div>
+                <span class="block text-slate-400 text-[10px] uppercase">Teléfono</span>
+                <span class="text-white text-sm font-bold">+52 33 1610 4576</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="p-2 border border-brand-gold/40 text-brand-gold"><i class="fa-brands fa-whatsapp text-base"></i></div>
+              <div>
+                <span class="block text-slate-400 text-[10px] uppercase">WhatsApp Directo</span>
+                <a href="https://wa.me/523316104576" target="_blank" class="text-brand-gold text-sm hover:underline font-bold">Enviar Mensaje</a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="p-2 border border-brand-gold/40 text-brand-gold"><i class="fa-solid fa-location-dot text-base"></i></div>
+              <div>
+                <span class="block text-slate-400 text-[10px] uppercase">Área de Cobertura</span>
+                <span class="text-white text-xs">Guadalajara / Zona Metropolitana / Proyectos Nacionales</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Simulated Architectural Map Component -->
+          <div class="bg-brand-darkBg border border-brand-darkBorder p-4 rounded-sm relative overflow-hidden h-64 flex flex-col justify-between">
+            <!-- Map Grid Styling -->
+            <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#D4AF37_1px,transparent_1px)] [background-size:16px_16px]"></div>
+            
+            <div class="relative z-10 flex justify-between items-center font-mono text-[10px] text-brand-gold uppercase">
+              <span><i class="fa-solid fa-map-pin mr-1"></i> Mapa de Cobertura</span>
+              <span>20.6736° N, 103.3440° W</span>
+            </div>
+
+            <!-- Pin Overlay -->
+            <div class="relative z-10 text-center my-auto">
+              <div class="inline-block p-3 rounded-full bg-brand-gold/20 border border-brand-gold text-brand-gold animate-bounce">
+                <i class="fa-solid fa-compass text-2xl"></i>
+              </div>
+              <h4 class="font-serif text-white font-bold mt-2">Jalisco, México</h4>
+              <p class="text-slate-400 text-[11px] font-mono">Atención Presencial y remota para renders 3D</p>
+            </div>
+
+            <div class="relative z-10 text-right font-mono text-[9px] text-slate-500">
+              ESTUDIO ARQUITECTÓNICO // SIAGALA
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-black border-t border-brand-darkBorder py-8 font-mono text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      
+      <div class="flex items-center gap-3">
+        <span class="text-white font-serif font-bold tracking-wider">ARQ JORGE SIAGALA</span>
+        <span>|</span>
+        <span>Arquitectura & Diseño</span>
+      </div>
+
+      <div>
+        © 2026 ARQ Jorge Siagala. Todos los derechos reservados.
+      </div>
+
+      <div class="flex items-center space-x-4 text-slate-400">
+        <a href="https://wa.me/523316104576" target="_blank" class="hover:text-brand-gold"><i class="fa-brands fa-whatsapp text-lg"></i></a>
+        <a href="#hero" class="hover:text-brand-gold"><i class="fa-solid fa-arrow-up text-lg"></i></a>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ================= MODAL PROYECTOS ================= -->
+  <div id="project-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-brand-darkCard border border-brand-gold/50 max-w-2xl w-full rounded-sm overflow-hidden shadow-2xl relative animate-fade-in">
+      
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-white hover:text-brand-gold text-xl z-10 bg-black/60 w-8 h-8 flex items-center justify-center rounded-full">
+        &times;
+      </button>
+
+      <div class="h-64 sm:h-80 overflow-hidden relative">
+        <img id="modal-img" src="" alt="" class="w-full h-full object-cover">
+        <div class="absolute bottom-4 left-4 bg-black/80 backdrop-blur-md px-3 py-1 border border-brand-gold/40 text-brand-gold font-mono text-xs uppercase" id="modal-category">
+          Categoría
+        </div>
+      </div>
+
+      <div class="p-6 space-y-4">
+        <div class="flex justify-between items-start">
+          <h3 id="modal-title" class="font-serif text-2xl text-white font-bold">Título</h3>
+          <span id="modal-specs" class="font-mono text-xs text-slate-400 bg-brand-darkBg px-3 py-1 border border-brand-darkBorder">
+            Especificaciones
+          </span>
+        </div>
+
+        <p id="modal-desc" class="text-slate-300 text-sm leading-relaxed font-light">
+          Descripción detallada del proyecto...
+        </p>
+
+        <div class="pt-4 border-t border-brand-darkBorder flex justify-end gap-4 font-mono text-xs">
+          <a href="https://wa.me/523316104576" target="_blank" class="px-6 py-2.5 bg-brand-gold text-black font-bold uppercase hover:bg-brand-goldLight transition-colors">
+            <i class="fa-brands fa-whatsapp mr-2"></i> Cotizar Proyecto Similar
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT ================= -->
+  <script>
+    // Generate QR Code dynamically targeting WhatsApp link
+    window.addEventListener('DOMContentLoaded', () => {
+      const qrcodeContainer = document.getElementById("qrcode");
+      if (qrcodeContainer) {
+        new QRCode(qrcodeContainer, {
+          text: "https://wa.me/523316104576",
+          width: 140,
+          height: 140,
+          colorDark: "#0b0f17",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H
+        });
+      }
+    });
+
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Filter Projects functionality
+    function filterProjects(category) {
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => {
+        if (btn.getAttribute('data-filter') === category) {
+          btn.classList.add('bg-brand-gold', 'text-black', 'border-brand-gold');
+          btn.classList.remove('bg-brand-darkCard', 'text-slate-300', 'border-brand-darkBorder');
+        } else {
+          btn.classList.remove('bg-brand-gold', 'text-black', 'border-brand-gold');
+          btn.classList.add('bg-brand-darkCard', 'text-slate-300', 'border-brand-darkBorder');
+        }
+      });
+
+      const projects = document.querySelectorAll('.project-item');
+      projects.forEach(project => {
+        if (category === 'all' || project.classList.contains(category)) {
+          project.style.display = 'block';
+        } else {
+          project.style.display = 'none';
+        }
+      });
+    }
+
+    // Modal Details Logic
+    function openModal(title, description, imgSrc, category, specs) {
+      document.getElementById('modal-title').innerText = title;
+      document.getElementById('modal-desc').innerText = description;
+      document.getElementById('modal-img').src = imgSrc;
+      document.getElementById('modal-category').innerText = category;
+      document.getElementById('modal-specs').innerText = specs;
+      
+      document.getElementById('project-modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('project-modal').classList.add('hidden');
+    }
+
+    // Copy URL to Clipboard
+    function copyToClipboard(text) {
+      const dummy = document.createElement('textarea');
+      document.body.appendChild(dummy);
+      dummy.value = text;
+      dummy.select();
+      document.execCommand('copy');
+      document.body.removeChild(dummy);
+
+      const toast = document.getElementById('toast');
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3000);
+    }
+
+    // Form Submission Handling -> WhatsApp Redirect
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const inputs = form.querySelectorAll('input, select, textarea');
+      
+      const name = inputs[0].value;
+      const phone = inputs[1].value;
+      const service = inputs[2].value;
+      const message = inputs[3].value;
+
+      const waText = `Hola ARQ Jorge Siagala, mi nombre es ${name} (Tel: ${phone}). Estoy interesado en un proyecto de tipo ${service}. Mensaje: ${message}`;
+      const encodedUrl = `https://wa.me/523316104576?text=${encodeURIComponent(waText)}`;
+      
+      window.open(encodedUrl, '_blank');
+    }
+  </script>
+</body>
+</html>
